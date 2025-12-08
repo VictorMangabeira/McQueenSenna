@@ -1,0 +1,202 @@
+/* Fonte */
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+
+/* Configuração universal */
+* 
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Remove o "toque azul" padrão ao clicar em botões no mobile */
+    -webkit-tap-highlight-color: transparent; 
+}
+
+/* Corpo da página */
+body 
+{
+    font-family: "Silkscreen", sans-serif;
+    font-weight: 500;
+    background: linear-gradient(90deg, #F9D616 0%, #FF8F00 100%);
+    line-height: 1.95rem;
+    /* Garante que o corpo ocupe pelo menos a altura total da tela */
+    min-height: 100vh; 
+}
+
+/* Cabeçalho da página */
+header 
+{
+    background: linear-gradient(90deg, #FF8F00 0%, #CE1620 100%);
+    border: 1px ridge #FF0000;
+    border-radius: 5px;
+    padding: 5px;
+    text-align: center;
+    box-shadow: 0 5px 8px rgba(255, 145, 0, 0.555);
+    /* Margem ajustada para não quebrar em telas menores */
+    margin: 10px auto; 
+    max-width: 90%;
+}
+
+/* Título principal do cabeçalho */
+header h1 
+{
+    font-size: 1.5rem; 
+    margin: 5px;
+    color: #48090E;
+}
+
+/* Configuração central/principal */
+main 
+{
+    text-align: center;
+    /* Margem flexível para centralizar verticalmente se precisar */
+    margin: 20px auto; 
+    padding: 10px;
+    max-width: 950px;
+    width: 100%;
+}
+
+/* ====== Seções dos botões ====== */
+.Controle 
+{
+    display: grid;
+    /* VERSÃO PC/TABLET: 8 Colunas (Layout horizontal) */
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    
+    max-width: 950px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    gap: 15px;
+    
+    /* Centraliza o controle na tela */
+    justify-content: center;
+    padding: 10px;
+}
+
+/* Efeito de clique */
+button:active 
+{
+    box-shadow: 0 2px rgba(0,0,0,0.2) !important; /* Sobrescreve sombra */
+    transform: translateY(4px);
+}
+
+/* Estilo visual dos botões */
+section div button 
+{
+    font-size: 1.5rem; 
+    background-color: #FF8F00;
+    border-radius: 15px; 
+    padding: 15px 0; 
+    border-color: #F9D616;
+    color: rgb(72, 9, 14);
+    box-shadow: 0 6px 0 #b86800; 
+    border: 2px solid #F9D616;
+    font-weight: bold;
+    width: 100%; /* Ocupa toda a célula do grid */
+    height: 100%;
+    cursor: pointer;
+    touch-action: manipulation; /* Melhora a resposta ao toque no mobile */
+}
+
+/* --- Posicionamento dos botões, Desktop/Tablet --- */
+.botão-frente   { grid-column: 2/3; grid-row: 1/2; }
+.botão-re       { grid-column: 2/3; grid-row: 3/4; }
+.botão-direita  { grid-column: 3/4; grid-row: 2/3; }
+.botão-esquerda { grid-column: 1/2; grid-row: 2/3; }
+.botão-parar    { grid-column: 2/3; grid-row: 2/3; background-color: #CE1620 !important; color: white !important; } /* Destaquei o parar */
+.botão-ataque   { grid-column: 6/7; grid-row: 2/3; }
+.botão-defesa   { grid-column: 7/8; grid-row: 2/3; }
+
+/* Configuração do rodapé padrão */
+footer 
+{
+    text-align: center;
+    padding: 10px;
+    background: linear-gradient(90deg,  #48090E 0%, #CE1620 100%); 
+    font-size: 0.8rem;
+    flex-shrink: 0; /* Impede que ele suma totalmente, mas não deixa crescer */
+}
+
+/*          RESPONSIVIDADE - CELULAR (Tela Vertical)            */
+
+@media (max-width: 600px) 
+{
+    
+    body 
+    {
+        /* Remove rolagem lateral */
+        overflow-x: hidden; 
+    }
+
+    header h1 
+    {
+        font-size: 1.2rem;
+    }
+
+    footer 
+    {
+        padding: 2px 0;       
+        font-size: 0.6rem;    
+        line-height: 1;       
+        border-top: 1px solid #48090E; 
+    }
+
+    .Controle 
+    {
+        /* Muda para layout vertical */
+        grid-template-columns: repeat(3, 1fr); 
+        grid-template-rows: repeat(5, 80px); /* Altura fixa para facilitar o toque */
+        gap: 10px;
+    }
+
+    /* Reposicionando as setas (Mantém no topo) */
+    .botão-frente   { grid-column: 2/3; grid-row: 1/2; }
+    .botão-esquerda { grid-column: 1/2; grid-row: 2/3; }
+    .botão-parar    { grid-column: 2/3; grid-row: 2/3; }
+    .botão-direita  { grid-column: 3/4; grid-row: 2/3; }
+    .botão-re       { grid-column: 2/3; grid-row: 3/4; }
+
+    /* Reposicionando Ação (Vão para baixo das setas) */
+    .botão-ataque 
+    { 
+        grid-column: 1/2; /* Esquerda */
+        grid-row: 5/6;    /* Linha de baixo */
+        margin-top: 20px; /* Separação visual */
+    }
+    
+    .botão-defesa { 
+        grid-column: 3/4; /* Direita */
+        grid-row: 5/6; 
+        margin-top: 20px;
+    }
+    
+    /* Aumentar ícones/texto para dedo */
+    section div button 
+    {
+        font-size: 1.5rem;
+        box-shadow: 0 4px 0 #b86800;
+    }
+}
+
+
+/*      RESPONSIVIDADE - CELULAR (Tela Deitada/ Horizontal)     */
+
+@media (max-height: 500px) and (orientation: landscape) 
+{
+    /* Ajustes para quando virar o celular para jogar */
+    
+    header { display: none; } /* Esconde o cabeçalho para ganhar espaço */
+    footer{ display: none; } /* Esconde o rodapé para ganhar espaço */
+    
+    main { margin: 5px auto; }
+    
+    .Controle {
+        /* Volta para o layout largo */
+        grid-template-columns: repeat(8, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        height: 85vh; /* Ocupa quase toda a altura da tela */
+        gap: 5px;
+    }
+
+}
