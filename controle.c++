@@ -1,3 +1,4 @@
+/*Codigo final*/
 /* Carrinho 2.0 - Atualizado para botões de segurar */
 
 // Bibliotecas
@@ -264,14 +265,14 @@ void responderOK() {
 // --- FUNÇÕES DE CONTROLE ---
 
 void motorFrente() {
-  digitalWrite(Pino1A, HIGH); digitalWrite(Pino2A, LOW);
-  digitalWrite(Pino1B, HIGH); digitalWrite(Pino2B, LOW);
+  digitalWrite(Pino1A, LOW); digitalWrite(Pino2A, HIGH);
+  digitalWrite(Pino1B, LOW); digitalWrite(Pino2B, HIGH);
   responderOK();
 }
 
 void motorRe() {
-  digitalWrite(Pino1A, LOW); digitalWrite(Pino2A, HIGH);
-  digitalWrite(Pino1B, LOW); digitalWrite(Pino2B, HIGH);
+  digitalWrite(Pino1A, HIGH); digitalWrite(Pino2A, LOW);
+  digitalWrite(Pino1B, HIGH); digitalWrite(Pino2B, LOW);
   responderOK();
 }
 
@@ -297,23 +298,23 @@ void motorParar() {
 
 // Ativa o ataque (Botão apertado)
 void sAtaque() {
-  servoAtaque.write(90); 
+  servoAtaque.write(180); 
   responderOK();
 }
 // Desativa o ataque (Botão solto) - NOVA
 void sAtaqueParar() {
-  servoAtaque.write(0); 
+  servoAtaque.write(90); 
   responderOK();
 }
 
 // Ativa a defesa (Botão apertado)
 void sDefesa() {
-  servoDefesa.write(180); 
+  servoDefesa.write(90); 
   responderOK();
 }
 // Desativa a defesa (Botão solto) - NOVA
 void sDefesaParar() {
-  servoDefesa.write(90); 
+  servoDefesa.write(30); 
   responderOK();
 }
 
@@ -355,8 +356,8 @@ void setup() {
   server.on("/defesaoff", sDefesaParar);
 
   // Posição inicial
-  servoAtaque.write(0);
-  servoDefesa.write(90);
+  servoAtaque.write(90);
+  servoDefesa.write(30);
   
   server.begin();
 }
